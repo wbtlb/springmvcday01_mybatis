@@ -1,11 +1,20 @@
 package cn.itcast.ssm.po;
 
+/**
+ * 
+ * <p>Title: ItemsQueryVo</p>
+ * <p>Description:鍟嗗搧鍖呰瀵硅薄 </p>
+ * <p>Company: www.itcast.com</p> 
+ * @author	浼犳櫤.鐕曢潚
+ * @date	2015-4-13涓嬪崍3:22:36
+ * @version 1.0
+ */
 public class ItemsQueryVo {
 	
-	//商品信息
+	//鍟嗗搧淇℃伅
 	private Items items;
 	
-	//为了系统可扩展性 对原生po进行扩展 
+	//涓轰簡绯荤粺 鍙墿灞曟�э紝瀵瑰師濮嬬敓鎴愮殑po杩涜鎵╁睍
 	private ItemsCustom itemsCustom;
 
 	public Items getItems() {

@@ -11,6 +11,6 @@ package cn.itcast.ssm.po;
  */
 public class ItemsCustom extends Items {
 	
-	//Ìí¼ÓÉÌÆ·ĞÅÏ¢À©Õ¹ÊôĞÔ
+	//æ·»åŠ å•†å“ä¿¡æ¯çš„æ‰©å±•å±æ€§
 
 }
