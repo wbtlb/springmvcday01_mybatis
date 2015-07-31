@@ -112,10 +112,10 @@ public class ItemsController {
 
 	//商品信息修改提交
 	@RequestMapping("/editItemsSubmit")
-	public String editItemsSubmit(HttpServletRequest request,ItemsCustom itemsCustom) throws Exception
+	public String editItemsSubmit(HttpServletRequest request,Integer id,ItemsCustom itemsCustom) throws Exception
 	{
 		//调用service更新商品信息，页面需要将商品信息传到次方法
-		//.......
+		itemsService.updateItems(id, itemsCustom);
 		
 		//返回ModelAndView
 //		ModelAndView modelAndView = new ModelAndView();
