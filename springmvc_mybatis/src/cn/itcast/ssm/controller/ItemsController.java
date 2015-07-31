@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.itcast.ssm.po.ItemsCustom;
@@ -61,6 +63,65 @@ public class ItemsController {
 		return modelAndView;
 
 	}
+	
+	//商品信息修改页面显示
+//	@RequestMapping("/editItems")
+//	public ModelAndView editItems() throws Exception
+//	{
+//		//调用service根据商品id查询商品信息
+//		ItemsCustom itemsCustom = itemsService.findItemsById(1);
+//		
+//		//返回ModelAndView
+//		ModelAndView modelAndView = new ModelAndView();
+//		
+//		//将商品信息放到model
+//		modelAndView.addObject("itemsCustom",itemsCustom);
+//		
+//		//商品修改页面
+//		modelAndView.setViewName("items/editItems");
+//		
+//		return modelAndView;
+//		
+//	}
+	
+	@RequestMapping(value="/editItems",method={RequestMethod.POST,RequestMethod.GET})
+	public String editItems(Model model) throws Exception
+	{
+		//调用service根据商品id查询商品信息
+		ItemsCustom itemsCustom = itemsService.findItemsById(1);
+		
+		//返回ModelAndView
+//		ModelAndView modelAndView = new ModelAndView();
+//		
+//		//将商品信息放到model
+//		modelAndView.addObject("itemsCustom",itemsCustom);
+//		
+//		//商品修改页面
+//		modelAndView.setViewName("items/editItems");
+		
+		//通过形参中的model将model数据传到页面中
+		model.addAttribute("itemsCustom",itemsCustom);
+		
+		return "items/editItems";
+		
+	}
 
+
+	//商品信息修改提交
+	@RequestMapping("/editItemsSubmit")
+	public ModelAndView editItemsSubmit() throws Exception
+	{
+		//调用service更新商品信息，页面需要将商品信息传到次方法
+		//.......
+		
+		//返回ModelAndView
+		ModelAndView modelAndView = new ModelAndView();
+		//返回一个成功页面
+		modelAndView.setViewName("success");
+		
+		return modelAndView;
+		
+
+	}
 
 }
