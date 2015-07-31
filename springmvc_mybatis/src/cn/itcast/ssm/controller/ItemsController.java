@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.itcast.ssm.po.ItemsCustom;
@@ -85,11 +86,13 @@ public class ItemsController {
 //	}
 	
 	@RequestMapping(value="/editItems",method={RequestMethod.POST,RequestMethod.GET})
-	public String editItems(Model model) throws Exception
+	//@RequestParam里边指定request传入参数名称和形参进行绑定
+	//通过required指定参数是否为必须传入
+	public String editItems(Model model,@RequestParam(value="id",required=true) Integer items_id) throws Exception
 	{
 		//调用service根据商品id查询商品信息
-		ItemsCustom itemsCustom = itemsService.findItemsById(1);
-		
+		ItemsCustom itemsCustom = itemsService.findItemsById(items_id);
+		System.out.println(items_id);
 		//返回ModelAndView
 //		ModelAndView modelAndView = new ModelAndView();
 //		
@@ -109,7 +112,7 @@ public class ItemsController {
 
 	//商品信息修改提交
 	@RequestMapping("/editItemsSubmit")
-	public String editItemsSubmit() throws Exception
+	public String editItemsSubmit(HttpServletRequest request,ItemsCustom itemsCustom) throws Exception
 	{
 		//调用service更新商品信息，页面需要将商品信息传到次方法
 		//.......
