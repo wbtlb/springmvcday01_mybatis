@@ -109,17 +109,21 @@ public class ItemsController {
 
 	//商品信息修改提交
 	@RequestMapping("/editItemsSubmit")
-	public ModelAndView editItemsSubmit() throws Exception
+	public String editItemsSubmit() throws Exception
 	{
 		//调用service更新商品信息，页面需要将商品信息传到次方法
 		//.......
 		
 		//返回ModelAndView
-		ModelAndView modelAndView = new ModelAndView();
-		//返回一个成功页面
-		modelAndView.setViewName("success");
+//		ModelAndView modelAndView = new ModelAndView();
+//		//返回一个成功页面
+//		modelAndView.setViewName("success");
+
+		//重定向到商品查询列表
+		//return "redirect:queryItems.action";
 		
-		return modelAndView;
+		return "forward:queryItems.action";
+		//return "success";
 		
 
 	}
