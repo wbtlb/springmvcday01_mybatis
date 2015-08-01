@@ -144,5 +144,38 @@ public class ItemsController {
 		}
 		return "success";
 	}
+	
+	//批量修改商品的页面，将商品信息查询出来 在页面中可以编辑商品信息
+	@RequestMapping("/editItemsQuery")
+	public ModelAndView editItemsQuery(HttpServletRequest request,ItemsQueryVo itemsQueryVo) throws Exception {
+		
 
+		// 调用service查找 数据库，查询商品列表
+		List<ItemsCustom> itemsList = itemsService.findItemsList(itemsQueryVo);
+		
+		// 返回ModelAndView
+		ModelAndView modelAndView = new ModelAndView();
+		// 相当 于request的setAttribut，在jsp页面中通过itemsList取数据
+		modelAndView.addObject("itemsList", itemsList);
+
+		// 指定视图
+		// 下边的路径，如果在视图解析器中配置jsp路径的前缀和jsp路径的后缀，修改为
+		// modelAndView.setViewName("/WEB-INF/jsp/items/itemsList.jsp");
+		// 上边的路径配置可以不在程序中指定jsp路径的前缀和jsp路径的后缀
+		modelAndView.setViewName("items/editItemsQuery");
+
+		return modelAndView;
+
+	}
+	
+	//批量修改商品的提交
+	//通过ItemsQueryVo接受批量提交商品信息 存到ItemsQueryVo的List中
+	@RequestMapping("editItemsAllSubmit")
+	public String editItemsAllSubmit(ItemsQueryVo itemsQueryVo) throws Exception
+	{
+		
+		
+		return "success";
+	}
+	
 }
