@@ -26,4 +26,9 @@
   		</where>
   	</select>
   	
+  	<!-- 商品删除 -->
+  	<delete id="deleteByPrimaryKey" parameterType="int">
+  		
+  	</delete>
+  	
 </mapper>

@@ -11,10 +11,10 @@ package cn.itcast.ssm.po;
  */
 public class ItemsQueryVo {
 	
-	//鍟嗗搧淇℃伅
+	//商品信息
 	private Items items;
 	
-	//涓轰簡绯荤粺 鍙墿灞曟�э紝瀵瑰師濮嬬敓鎴愮殑po杩涜鎵╁睍
+	//为了系统扩展性 对原生po进行扩展
 	private ItemsCustom itemsCustom;
 
 	public Items getItems() {

@@ -131,5 +131,18 @@ public class ItemsController {
 		
 
 	}
+	
+	//批量删除商品信息
+	@RequestMapping("/deleteItems")
+	public String deleteItems(int[] items_id) throws Exception
+	{
+		//调用删除service
+		
+		for(int i = 0; i < items_id.length; i++)
+		{
+			itemsService.deleteItems(items_id[i]);
+		}
+		return "success";
+	}
 
 }

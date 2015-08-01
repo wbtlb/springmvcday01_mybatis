@@ -52,5 +52,11 @@ public class ItemsServiceImpl implements ItemsService{
 		
 	}
 
+	@Override
+	public void deleteItems(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		itemsMapper.deleteByPrimaryKey(id);
+	}
+
 
 }
