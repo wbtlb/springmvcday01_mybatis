@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.itcast.ssm.controller.validation.ValidGroup1;
+import cn.itcast.ssm.exception.CustomException;
 import cn.itcast.ssm.po.ItemsCustom;
 import cn.itcast.ssm.po.ItemsQueryVo;
 import cn.itcast.ssm.service.ItemsService;
@@ -112,7 +113,12 @@ public class ItemsController {
 			throws Exception {
 		// 调用service根据商品id查询商品信息
 		ItemsCustom itemsCustom = itemsService.findItemsById(items_id);
-		System.out.println(items_id);
+		//判断商品是否为空 根据id没有查到商品 抛出异常 提示用户商品信息不存在
+//		if(itemsCustom == null)
+//		{
+//			throw new CustomException("修改的商品信息不存在!");
+//		}
+		
 		// 返回ModelAndView
 		// ModelAndView modelAndView = new ModelAndView();
 		//
