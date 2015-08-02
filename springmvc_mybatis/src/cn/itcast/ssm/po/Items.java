@@ -5,11 +5,14 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import cn.itcast.ssm.controller.validation.ValidGroup1;
+
 public class Items {
     private Integer id;
 
     //校验名称在1-30个字符 message提示错误信息
-    @Size(min=1,max=30,message="{items.name.length.error}")
+    //groups标示校验属于哪个分组
+    @Size(min=1,max=30,message="{items.name.length.error}",groups={ValidGroup1.class})
     private String name;
 
     private Float price;
