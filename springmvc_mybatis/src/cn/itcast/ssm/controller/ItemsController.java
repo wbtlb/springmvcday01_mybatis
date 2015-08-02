@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -112,9 +115,25 @@ public class ItemsController {
 
 
 	//商品信息修改提交
+	//在需要校验的pojo添加@Validated 在需要校验的pojo后边添加BindingResult bindingResult接受校验出的信息
+	//注意:@Validated和BindingResult BindingResult是配对出现 并且形参顺序是固定的（一前一后）
 	@RequestMapping("/editItemsSubmit")
-	public String editItemsSubmit(HttpServletRequest request,Integer id,ItemsCustom itemsCustom) throws Exception
+	public String editItemsSubmit(Model model,HttpServletRequest request,Integer id,@Validated ItemsCustom itemsCustom,BindingResult bindingResult) throws Exception
 	{
+		
+		//获取校验出错信息
+		if(bindingResult.hasErrors())
+		{
+			List<ObjectError> allErrors = bindingResult.getAllErrors();
+			for(ObjectError objectError : allErrors)
+			{
+				System.out.println(new String(objectError.getDefaultMessage().getBytes("ISO-8859-1"),"utf-8"));
+			}
+			model.addAttribute("allErrors",allErrors);
+
+			return "items/editItems";
+		}
+		
 		//调用service更新商品信息，页面需要将商品信息传到次方法
 		itemsService.updateItems(id, itemsCustom);
 		
