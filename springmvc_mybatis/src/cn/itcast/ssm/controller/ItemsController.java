@@ -15,9 +15,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -137,6 +139,17 @@ public class ItemsController {
 
 	}
 
+	//查询商品信息 输出json
+	//itemsView{id}里边的{id}表示将这个位置的参数传到@PathVariable指定名称中
+	@RequestMapping("/itemsView/{id}")
+	public @ResponseBody ItemsCustom itemsView(@PathVariable("id") Integer id) throws Exception
+	{
+		//调用service查询商品信息
+		ItemsCustom itemsCustom = itemsService.findItemsById(id);
+		
+		return itemsCustom;
+	}
+	
 	// 商品信息修改提交
 	// 在需要校验的pojo添加@Validated 在需要校验的pojo后边添加BindingResult bindingResult接受校验出的信息
 	// 注意:@Validated和BindingResult BindingResult是配对出现 并且形参顺序是固定的（一前一后）

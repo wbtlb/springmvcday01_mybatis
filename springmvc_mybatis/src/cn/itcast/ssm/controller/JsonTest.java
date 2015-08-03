@@ -23,7 +23,7 @@ public class JsonTest {
 	{
 		//@RequestBody将itemsCustom转成json输出
 		return itemsCustom;
-	}
+	} 
 	
 	//请求key-value输出json
 	@RequestMapping("/responseJson")
